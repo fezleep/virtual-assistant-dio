@@ -1,6 +1,6 @@
 # virtual assistant dio
 
-um assistente virtual simples feito em python para o desafio da dio.
+assistente virtual simples feito em python para o desafio da dio.
 
 a ideia do projeto é juntar fala, texto e alguns comandos pequenos em uma base fácil de entender. ele não tenta ser uma alexa completa. é um primeiro passo para estudar speech to text, text to speech e automações simples com python.
 
@@ -21,12 +21,12 @@ criar um assistente virtual que consiga:
 
 o projeto tem dois arquivos principais:
 
-- `src/assistant.py`: roda o assistente, cuida da fala, do áudio e do modo texto
+- `src/assistant.py`: roda o assistente e organiza os modos de uso
 - `src/commands.py`: concentra a lógica dos comandos
 
-por padrão, o assistente roda em modo texto. isso deixa o projeto mais simples de testar em qualquer computador e também evita problemas comuns com microfone.
+por padrão, o assistente roda em modo texto. isso deixa o teste mais simples em qualquer computador e evita problemas comuns com microfone.
 
-o modo por voz existe, mas é opcional. ele depende do ambiente local, permissões de microfone e configuração do sistema.
+o modo por voz existe, mas é opcional. ele depende do ambiente local, das permissões de microfone e da configuração do sistema.
 
 ## text to speech
 
@@ -41,15 +41,15 @@ tts = gTTS("olá, eu sou seu assistente virtual", lang="pt-br")
 tts.save("output.mp3")
 ```
 
-o projeto salva o áudio, mas não obriga nenhuma biblioteca específica para tocar o arquivo. isso deixa a solução mais simples e mais fácil de rodar em ambientes diferentes.
+o projeto salva o áudio sem obrigar uma biblioteca específica para tocar o arquivo. assim ele fica mais simples de rodar em ambientes diferentes, inclusive no google colab.
 
 ## speech to text
 
 para tentar transformar fala em texto, usei `SpeechRecognition`.
 
-essa parte depende de microfone e funciona melhor em ambiente local. no google colab, o foco fica em text to speech e simulação de comandos por texto.
+essa parte depende de microfone e funciona melhor em ambiente local. no google colab, o foco fica em text to speech e na simulação de comandos por texto.
 
-se o microfone não funcionar, o assistente orienta a usar o modo texto.
+se o microfone não estiver disponível, o assistente ainda pode ser usado no modo texto.
 
 ## comandos disponíveis
 
@@ -79,11 +79,11 @@ no colab, a proposta é testar:
 - pesquisa na wikipedia
 - abertura de links
 
-o speech to text com microfone fica como observação, porque o colab não é o melhor ambiente para isso.
+o speech to text com microfone fica como observação, porque o colab não é o melhor ambiente para essa parte.
 
 ## como rodar localmente
 
-crie um ambiente virtual, instale as dependências e rode o assistente:
+crie um ambiente virtual:
 
 ```bash
 python -m venv .venv
@@ -101,7 +101,7 @@ no linux ou mac:
 source .venv/bin/activate
 ```
 
-instale as libs:
+instale as dependências:
 
 ```bash
 pip install -r requirements.txt
@@ -119,6 +119,20 @@ para tentar usar voz:
 python src/assistant.py --mode voice
 ```
 
+## prints do projeto
+
+### início do notebook
+
+![inicio do notebook](README-assets/notebook_overview.png)
+
+### text to speech
+
+![text to speech](README-assets/text_to_speech.png)
+
+### resposta dos comandos
+
+![resposta dos comandos](README-assets/command_response.png)
+
 ## observações importantes
 
 - o modo texto é o caminho principal do projeto
@@ -126,18 +140,6 @@ python src/assistant.py --mode voice
 - o áudio gerado fica em `output.mp3`
 - arquivos `.mp3` e `.wav` ficam fora do git por causa do `.gitignore`
 - o projeto evita dependências obrigatórias como `pyaudio`, `playsound` e bibliotecas específicas do windows
-
-## prints do projeto
-
-sugestões de prints para colocar na entrega:
-
-- execução do assistente no terminal em modo texto
-- arquivo `output.mp3` gerado
-- notebook rodando no google colab
-- resultado de uma pesquisa na wikipedia
-- navegador abrindo youtube ou busca por farmácia próxima
-
-os prints podem ser colocados depois na pasta `README-assets/`.
 
 ## aprendizados
 
@@ -164,4 +166,4 @@ algumas ideias para evoluir:
 
 ## conclusão
 
-esse assistente é uma versão inicial, simples e funcional. ele mostra como juntar fala, texto e automações pequenas em python sem deixar o projeto pesado ou difícil de rodar.
+esse assistente é uma versão inicial, simples e funcional. ele mostra como juntar fala, texto e pequenas automações em python sem deixar o projeto pesado ou difícil de rodar.
